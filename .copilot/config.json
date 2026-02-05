@@ -1,0 +1,11 @@
+{
+  "banner": "always",
+  "render_markdown": true,
+  "theme": "auto",
+  "trusted_folders": [  ],
+  "asked_setup_terminals": [
+    "vscode"
+  ],
+  "staff": true,
+  "log_level": "all"
+}
