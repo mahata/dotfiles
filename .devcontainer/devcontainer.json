@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:24-bullseye",
   "features": {
     "ghcr.io/devcontainers/features/azure-cli:1": {}
-  }
+  },
   "customizations": {
     "vscode": {
       "extensions": ["ms-playwright.playwright", "vitest.explorer", "GitHub.copilot"],
