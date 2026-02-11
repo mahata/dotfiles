@@ -1,6 +1,7 @@
 #!/bin/bash -x
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/lib.sh"
 
 install_apt_packages() {
     sudo apt update

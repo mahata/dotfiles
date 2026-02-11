@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -x
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -13,7 +13,7 @@ run_step() {
 
     if [[ $exit_code -ne 0 ]]; then
         FAILED_STEPS+=("$name")
-        log_error_persistent "install" "$name" "$exit_code" "$output"
+        log_error "install" "$name" "$exit_code" "$output"
         echo "⚠️  $name failed, continuing..."
         echo "$output"
     else
