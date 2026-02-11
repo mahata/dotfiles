@@ -1,7 +1,6 @@
 #!/bin/bash -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-source "$SCRIPT_DIR/lib.sh"
 
 run_step() {
     local name="$1"
