@@ -15,4 +15,4 @@ alias dremoveall='docker rm $(docker ps -a -q)'
 alias drmiall='docker rmi $(docker images -a -q)'
 alias dreset="dstopall; dremoveall; drmiall -f; docker system prune"
 alias dcu="docker compose up"
-alias dcd="docker compose down
+alias dcd="docker compose down"
