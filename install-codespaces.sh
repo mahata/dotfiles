@@ -19,3 +19,4 @@ install_apt_packages() {
 
 log_info "Starting Codespaces installation..."
 run_step "Install apt packages" install_apt_packages
+run_step "Install uv" install_uv
