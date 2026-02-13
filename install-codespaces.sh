@@ -17,6 +17,12 @@ install_apt_packages() {
         shellcheck
 }
 
+configure_zsh() {
+    log_info "Configuring Zsh..."
+    ln -sf "$SCRIPT_DIR/zsh/.zshrc" "$HOME/.zshrc"
+}
+
 log_info "Starting Codespaces installation..."
 run_step "Install apt packages" install_apt_packages
 run_step "Install uv" install_uv
+run_step "Configure Zsh" configure_zsh
