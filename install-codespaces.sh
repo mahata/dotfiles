@@ -22,7 +22,14 @@ configure_zsh() {
     ln -sf "$SCRIPT_DIR/zsh/.zshrc" "$HOME/.zshrc"
 }
 
+configure_git() {
+    log_info "Configuring Git..."
+    mkdir -p "$HOME/.config/git"
+    ln -sf "$SCRIPT_DIR/git/config" "$HOME/.config/git/config"
+}
+
 log_info "Starting Codespaces installation..."
 run_step "Install apt packages" install_apt_packages
 run_step "Install uv" install_uv
 run_step "Configure Zsh" configure_zsh
+run_step "Configure Git" configure_git

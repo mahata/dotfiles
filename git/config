@@ -1,0 +1,9 @@
+[user]
+        name = Yasunori Mahata
+        email = y@mahata.org
+[rerere]
+        enabled = true
+[init]
+        defaultBranch = main
+[push]
+        autoSetupRemote = true
