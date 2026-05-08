@@ -1,7 +1,5 @@
 #!/bin/bash -x
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-
 run_step() {
     local name="$1"
     shift

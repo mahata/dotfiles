@@ -29,6 +29,21 @@ cd ~/dotfiles
 
 All output is printed to the terminal and also written to `$HOME/dotfiles_install.log`. Check that file when troubleshooting.
 
+## Tests
+
+Tests live in `tests/` and use [bats-core](https://github.com/bats-core/bats-core).
+
+```sh
+brew install bats-core   # or: apt-get install bats
+bats tests/
+```
+
+CI runs three jobs on every push and pull request:
+
+- `shellcheck` — lints the shell scripts.
+- `bats` — unit tests with stubbed external commands.
+- `integration` — runs `install.sh` inside the Codespaces base image (`mcr.microsoft.com/devcontainers/universal`) with `CODESPACES=true` and asserts the resulting shell, symlinks, and config.
+
 ## License
 
 See [LICENSE](./LICENSE).

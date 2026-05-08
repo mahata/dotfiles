@@ -1,6 +1,7 @@
 #!/bin/bash -x
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib.sh
 source "$SCRIPT_DIR/lib.sh"
 
 install_uv() {
@@ -47,9 +48,15 @@ configure_login_shell() {
     sudo chsh -s "$zsh_path" "$USER"
 }
 
-log_info "Starting Codespaces installation..."
-run_step "Install apt packages" install_apt_packages
-run_step "Install uv" install_uv
-run_step "Configure Zsh" configure_zsh
-run_step "Configure Git" configure_git
-run_step "Configure login shell" configure_login_shell
+main() {
+    log_info "Starting Codespaces installation..."
+    run_step "Install apt packages" install_apt_packages
+    run_step "Install uv" install_uv
+    run_step "Configure Zsh" configure_zsh
+    run_step "Configure Git" configure_git
+    run_step "Configure login shell" configure_login_shell
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi
