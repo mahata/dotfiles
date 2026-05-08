@@ -24,14 +24,8 @@ install_ghostty_terminfo() {
     fi
 
     log_info "Installing ghostty terminfo..."
-    local url="https://raw.githubusercontent.com/ghostty-org/ghostty/main/src/terminfo/ghostty.terminfo"
-    local tmp
-    tmp=$(mktemp)
-    trap 'rm -f "$tmp"' RETURN
-
-    curl -fsSL "$url" -o "$tmp"
     mkdir -p "$HOME/.terminfo"
-    tic -x -o "$HOME/.terminfo" "$tmp"
+    tic -x -o "$HOME/.terminfo" "$SCRIPT_DIR/ghostty.terminfo"
 }
 
 configure_zsh() {
