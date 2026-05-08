@@ -28,8 +28,28 @@ configure_git() {
     ln -sf "$SCRIPT_DIR/git/config" "$HOME/.config/git/config"
 }
 
+configure_login_shell() {
+    log_info "Configuring login shell..."
+    local zsh_path
+    zsh_path="$(command -v zsh)"
+    if [[ -z "$zsh_path" ]]; then
+        echo "zsh not found, skipping login shell change"
+        return 0
+    fi
+
+    local current_shell
+    current_shell="$(getent passwd "$USER" | cut -d: -f7)"
+    if [[ "$current_shell" == "$zsh_path" ]]; then
+        echo "Login shell is already $zsh_path, skipping"
+        return 0
+    fi
+
+    sudo chsh -s "$zsh_path" "$USER"
+}
+
 log_info "Starting Codespaces installation..."
 run_step "Install apt packages" install_apt_packages
 run_step "Install uv" install_uv
 run_step "Configure Zsh" configure_zsh
 run_step "Configure Git" configure_git
+run_step "Configure login shell" configure_login_shell

@@ -10,6 +10,8 @@ Register this repository as your dotfiles in your GitHub account settings, and `
 
 Settings page: <https://github.com/settings/codespaces> — see the "Dotfiles" section.
 
+The Codespaces setup also switches the login shell to `zsh` via `sudo chsh`, so new terminals start in zsh.
+
 ### Local
 
 ```sh
