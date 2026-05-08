@@ -36,7 +36,7 @@ jobs:
               set -e
               cp -r /dotfiles /home/codespace/dotfiles
               chown -R codespace:codespace /home/codespace/dotfiles
-              su - codespace -c "/home/codespace/dotfiles/install.sh"
+              su - codespace -c "CODESPACES=true /home/codespace/dotfiles/install.sh"
               shell="$(getent passwd codespace | cut -d: -f7)"
               echo "Login shell after install: $shell"
               [[ "$shell" == *zsh ]]
