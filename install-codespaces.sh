@@ -20,11 +20,27 @@ install_apt_packages() {
 
 install_emacs() {
     log_info "Installing Emacs 30..."
-    sudo apt update \
-        && sudo apt install -y software-properties-common \
+
+    local codename="unknown"
+    if [[ -r /etc/os-release ]]; then
+        codename="$(awk -F= '$1 == "VERSION_CODENAME" { print $2 }' /etc/os-release)"
+    fi
+    log_info "Detected Ubuntu codename: ${codename:-unknown}"
+
+    # DPkg::Lock::Timeout lets apt wait for the dpkg lock instead of failing
+    # immediately when unattended-upgrades runs during Codespace creation.
+    sudo apt-get -o DPkg::Lock::Timeout=300 update \
+        && sudo apt-get -o DPkg::Lock::Timeout=300 install -y software-properties-common \
         && sudo add-apt-repository -y ppa:ubuntuhandbook1/emacs \
-        && sudo apt update \
-        && sudo apt install -y emacs-nox
+        && sudo apt-get -o DPkg::Lock::Timeout=300 update \
+        && sudo apt-get -o DPkg::Lock::Timeout=300 install -y emacs-nox \
+        || return 1
+
+    if ! command -v emacs >/dev/null 2>&1; then
+        log_error "Emacs binary not found after installation"
+        return 1
+    fi
+    log_info "Installed $(emacs --version | head -n1)"
 }
 
 configure_zsh() {
