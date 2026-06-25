@@ -40,7 +40,7 @@ CI runs three jobs on every push and pull request:
 
 - `shellcheck` — lints the shell scripts.
 - `bats` — unit tests with stubbed external commands.
-- `integration` — runs `install.sh` inside the Codespaces base image (`mcr.microsoft.com/devcontainers/universal`) with `CODESPACES=true` and asserts the resulting shell, symlinks, and config.
+- `integration` — runs `install.sh` inside the Codespaces base image (`mcr.microsoft.com/devcontainers/universal`) with `CODESPACES=true` and asserts that the login shell is left unchanged and that the git config symlink is created.
 
 ## License
 

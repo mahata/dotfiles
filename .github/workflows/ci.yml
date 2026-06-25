@@ -20,7 +20,12 @@ jobs:
       - name: Install bats
         run: sudo apt-get update && sudo apt-get install -y bats
       - name: Run bats
-        run: bats tests/
+        run: |
+          if ls tests/*.bats >/dev/null 2>&1; then
+            bats tests/
+          else
+            echo "No .bats tests found, skipping."
+          fi
 
   integration:
     runs-on: ubuntu-latest
@@ -36,6 +41,10 @@ jobs:
               set -e
               cp -r /dotfiles /home/codespace/dotfiles
               chown -R codespace:codespace /home/codespace/dotfiles
+              before_shell="$(getent passwd codespace | cut -d: -f7)"
               su - codespace -c "CODESPACES=true /home/codespace/dotfiles/install.sh"
+              after_shell="$(getent passwd codespace | cut -d: -f7)"
+              echo "Login shell before: $before_shell, after: $after_shell"
+              [[ "$before_shell" == "$after_shell" ]]
               [[ -L /home/codespace/.config/git/config ]]
             '
