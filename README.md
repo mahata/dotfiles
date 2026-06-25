@@ -10,6 +10,8 @@ Register this repository as your dotfiles in your GitHub account settings, and `
 
 Settings page: <https://github.com/settings/codespaces> — see the "Dotfiles" section.
 
+The Codespaces setup installs Emacs 30 (`emacs-nox`) from the `ppa:ubuntuhandbook1/emacs` PPA, which provides Emacs 30 packages for Ubuntu 22.04 and 24.04.
+
 ### Local
 
 ```sh
