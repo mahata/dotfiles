@@ -10,7 +10,7 @@ Register this repository as your dotfiles in your GitHub account settings, and `
 
 Settings page: <https://github.com/settings/codespaces> — see the "Dotfiles" section.
 
-The Codespaces setup also switches the login shell to `zsh` via `sudo chsh`, so new terminals start in zsh. It also installs Emacs 30 (`emacs-nox`) from the `ppa:ubuntuhandbook1/emacs` PPA, which provides Emacs 30 packages for Ubuntu 22.04 and 24.04.
+The Codespaces setup installs Emacs 30 (`emacs-nox`) from the `ppa:ubuntuhandbook1/emacs` PPA, which provides Emacs 30 packages for Ubuntu 22.04 and 24.04.
 
 ### Local
 
@@ -42,7 +42,7 @@ CI runs three jobs on every push and pull request:
 
 - `shellcheck` — lints the shell scripts.
 - `bats` — unit tests with stubbed external commands.
-- `integration` — runs `install.sh` inside the Codespaces base image (`mcr.microsoft.com/devcontainers/universal`) with `CODESPACES=true` and asserts the resulting shell, symlinks, and config.
+- `integration` — runs `install.sh` inside the Codespaces base image (`mcr.microsoft.com/devcontainers/universal`) with `CODESPACES=true` and asserts that the login shell is left unchanged and that the git config symlink is created.
 
 ## License
 
