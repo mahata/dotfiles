@@ -20,11 +20,11 @@ install_apt_packages() {
 
 install_emacs() {
     log_info "Installing Emacs 30..."
-    sudo apt update
-    sudo apt install -y software-properties-common
-    sudo add-apt-repository -y ppa:ubuntuhandbook1/emacs
-    sudo apt update
-    sudo apt install -y emacs-nox
+    sudo apt update \
+        && sudo apt install -y software-properties-common \
+        && sudo add-apt-repository -y ppa:ubuntuhandbook1/emacs \
+        && sudo apt update \
+        && sudo apt install -y emacs-nox
 }
 
 configure_zsh() {
