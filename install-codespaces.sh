@@ -18,6 +18,15 @@ install_apt_packages() {
         shellcheck
 }
 
+install_emacs() {
+    log_info "Installing Emacs 30..."
+    sudo apt update
+    sudo apt install -y software-properties-common
+    sudo add-apt-repository -y ppa:ubuntuhandbook1/emacs
+    sudo apt update
+    sudo apt install -y emacs-nox
+}
+
 configure_zsh() {
     log_info "Configuring Zsh..."
     ln -sf "$SCRIPT_DIR/zsh/.zshrc" "$HOME/.zshrc"
@@ -52,6 +61,7 @@ main() {
     log_info "Starting Codespaces installation..."
     run_step "Install apt packages" install_apt_packages
     run_step "Install uv" install_uv
+    run_step "Install Emacs 30" install_emacs
     run_step "Configure Zsh" configure_zsh
     run_step "Configure Git" configure_git
     run_step "Configure login shell" configure_login_shell
